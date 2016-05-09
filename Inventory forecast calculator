@@ -1,0 +1,10 @@
+library(gamlss)
+
+fitDist(mydata$quantitysold) #find which probability dist to model for continous data
+#fitDist(mydata$quantitysold, type="counts") #for count data only
+histDist(mydata$quantitysold, family=myfamily) #check density/histogram of the data
+
+model1<-gamlss(mydata$quantitysold~mydata$time, family=myfamily) #if there is enough history for trend and seasonality, insert splines if needed
+#model2<-gamlss(mydata$quantitysold~1, family=myfamily) #short history
+
+mean1<-predict(
