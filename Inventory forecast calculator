@@ -7,4 +7,10 @@ histDist(mydata$quantitysold, family=myfamily) #check density/histogram of the d
 model1<-gamlss(mydata$quantitysold~mydata$time, family=myfamily) #if there is enough history for trend and seasonality, insert splines if needed
 #model2<-gamlss(mydata$quantitysold~1, family=myfamily) #short history
 
-mean1<-predict(
+mean1<-predict(model1, what="mu", newdata=newdata) #predict the mean
+stdev<-predict(model1, what="sigma", newdata=newdata) #predict the Standard Deviation 
+#kurtosis1<-predict(model1, what="nu", newdata=newdata) #use for modeling Box-Cox Disturbtion or other 3 or 4 parameter distribution
+
+
+
+#qBCT(0.985,mu=mean1,sigma=stdev, nu=kurtosis1) #example distribtuion to find the order up to quantity to fullfil 98.5% demand for Box-Cox T Distribution  
