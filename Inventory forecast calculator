@@ -3,7 +3,7 @@ library(forecast)
 
 fam1<-fitDist(mydata$quantitysold) #find which probability dist to model for continous data
 #fitDist(mydata$quantitysold, type="counts") #for count data only
-fam2<-fam1[["family"]]
+fam2<-fam1[["family"]] #extract which family of probability distributions the data is similar to
 histDist(mydata$quantitysold, family=fam2) #check density/histogram of the data
 
 mytimeseries<- ts(mydata$quantitysold, start=2012, frequeny=365.25/7) #weekly time series
