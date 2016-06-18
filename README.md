@@ -1,19 +1,18 @@
 # Supply-Chain-Metric
-STATISTICAL CALCUATIONS AND ECONOMIC ORDER UP-TO MODEL
+STATISTICAL CALCUATIONS to predict future inventory
  
 To predict future inventory levels, a forecast must be calculated to anticipate weekly sales demand volume. Once forecasted demand has been calculated, these values can be used to predict the quantity need to fulfill a given percent of business demand. 
 Order Up-To Model Definitions
-Backorder = the total amount of demand that has not been satisfied within a given timeframe.  All backorders are eventually filled, i.e no lost sales. Backorders are calculated as: 
+Backorder = the total amount of demand that has not been satisfied within a given timeframe.  All backorders are eventually filled, i.e no lost sales. Backorders are calculated as:  
 BO = (Quantity ordered / Quantity shipped)  
-Inventory level = On-hand inventory - BO.
-Inventory position = On-order inventory + Inventory level.
-On-order inventory = the number of units that have been ordered by Brightstar, but have not been received.
-On-hand inventory = number of units physically in stock
-Order up-to level (S) = maximum inventory position or target inventory level or base stock levels; i.e. do not exceed this number
-Service Level (SL) = percent of fulfilled client purchase orders during one time period. The following formula is used to calculate SL:
-SL = 1-(B /D)
-D = Customer demand per unit of time (e.g. one week)
-µ = Expected weekly demand for multiple units of time (e.g. four weeks)
+Inventory level = On-hand inventory - BO   
+Inventory position = On-order inventory + Inventory level.   
+On-order inventory = the number of units that have been ordered, but have not been received.   
+On-hand inventory = number of units physically in stock   
+Order up-to level (S) = maximum inventory position or target inventory level or base stock levels; i.e. do not exceed this number   Service Level (SL) = percent of fulfilled client purchase orders during one time period. The following formula is used to calculate SL:
+SL = 1-(B /D)   
+D = Customer demand per unit of time (e.g. one week)   
+µ = Expected weekly demand for multiple units of time (e.g. four weeks)   
 StDev = Standard deviation of weekly sales demand
 σ = Expected standard deviation of demand over future time interval
 Φ = Inverse cumulative density function of the Standard Normal Distribution 
