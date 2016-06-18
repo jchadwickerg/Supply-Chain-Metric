@@ -1,16 +1,23 @@
 library(gamlss)
+library(forecast)
 
-fitDist(mydata$quantitysold) #find which probability dist to model for continous data
+fam1<-fitDist(mydata$quantitysold) #find which probability dist to model for continous data
 #fitDist(mydata$quantitysold, type="counts") #for count data only
-histDist(mydata$quantitysold, family=myfamily) #check density/histogram of the data
+fam2<-fam1[["family"]]
+histDist(mydata$quantitysold, family=fam2) #check density/histogram of the data
 
-model1<-gamlss(mydata$quantitysold~mydata$time, family=myfamily) #if there is enough history for trend and seasonality, insert splines if needed
-#model2<-gamlss(mydata$quantitysold~1, family=myfamily) #short history
+mytimeseries<- ts(mydata$quantitysold, start=2012, frequeny=365.25/7) #weekly time series
 
-mean1<-predict(model1, what="mu", newdata=newdata) #predict the mean
-stdev<-predict(model1, what="sigma", newdata=newdata) #predict the Standard Deviation 
-#kurtosis1<-predict(model1, what="nu", newdata=newdata) #use for modeling Box-Cox Disturbtion or other 3 or 4 parameter distribution
+newdata1<-auto.arima(mytimeseries$quantitysold)
+newdata2<-forecast(newdata1, h=4) #number of forecast periods
+newdata<-as.data.frame(newdata2[["mean"]]) #extract the point estimates
 
+m1<-gamlss(newdata$x~1, family=fam2)
+summary(m1) #check model assumptions
+plot(m1) #check model assumptions
+xbar<-m1[["mu"]] #predict the mean
+stdev<-m1[["sigma"]] #predict the deviance 
+#kurtosis1<-m1[["nu"]] #use for modeling Box-Cox Disturbtion or other 3 or 4 parameter distribution
+#skew1<-m1[["tau"]]#use for 4 parameter distributions
 
-
-#qBCT(0.985,mu=mean1,sigma=stdev, nu=kurtosis1) #example distribtuion to find the order up to quantity to fullfil 98.5% demand for Box-Cox T Distribution  
+#qBCT(0.985,mu=mean1,sigma=stdev, nu=kurtosis1) #example order up to fullfil 98% demand
