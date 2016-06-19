@@ -20,4 +20,4 @@ stdev<-m1[["sigma"]] #predict the deviance
 #kurtosis1<-m1[["nu"]] #use for modeling Box-Cox Disturbtion or other 3 or 4 parameter distribution
 #skew1<-m1[["tau"]]#use for 4 parameter distributions
 
-#qBCT(0.985,mu=mean1,sigma=stdev, nu=kurtosis1) #example order up to fullfil 98% demand
+#qBCT(0.985,mu=xbar,sigma=stdev, nu=kurtosis1) #example order up to fullfil 98% demand
